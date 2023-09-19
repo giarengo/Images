@@ -1,0 +1,55 @@
+\documentclass[]{article}
+\usepackage{tikz}
+\usepackage{pgfplots}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     					EXAFS FIGURE						%%	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+
+\begin{tikzpicture}
+	
+% \draw[help lines] (0,0) grid (8,8);
+
+\begin{scope}
+	\foreach \x in {0.6,1.2,...,5.4}
+	\pgfmathsetmacro{\k}{(\x/5.4)*100} 
+	\draw [white!\k!red] (4,4) circle [radius=\x];
+\end{scope}
+
+\begin{scope}
+\foreach \y in {0.6,1.2,...,2.4}
+	\pgfmathsetmacro{\j}{100-((\y/4)*100)}
+	\draw [blue!\j!white] ([shift=(-60:\y cm)]1,4) arc (-60:60:\y cm); 
+\end{scope}
+
+\begin{scope}
+	\foreach \y in {0.6,1.2,...,4.2}
+		\pgfmathsetmacro{\j}{80-((\y/8)*100)}
+		\draw [forestgreen!\j!white] ([shift=(110:\y cm)]7.54,0.46) arc (110:160:\y cm); 
+\end{scope}
+
+\shade [ball color=red] (4cm,4cm) circle(10pt);
+
+\shade [ball color=blue] (canvas cs:x=4cm,y=1cm) circle(10pt);
+\shade [ball color=blue] (canvas cs:x=7cm,y=4cm) circle(10pt);
+\shade [ball color=blue] (canvas cs:x=4cm,y=7cm) circle(10pt);
+\shade [ball color=blue] (canvas cs:x=1cm,y=4cm) circle(10pt);
+
+\shade [ball color=forestgreen] (canvas cs:x=0.46cm,y=0.46cm) circle(10pt);
+\shade [ball color=forestgreen] (canvas cs:x=7.54cm,y=0.46cm) circle(10pt);
+\shade [ball color=forestgreen] (canvas cs:x=7.54cm,y=7.54cm) circle(10pt);
+\shade [ball color=forestgreen] (canvas cs:x=0.46cm,y=7.54cm) circle(10pt);
+
+\draw [<->] (4.5,4) -- node[below] {$R_{AB}$} 
+(6.5,4);
+
+
+\draw [<->] (4.35,4.35) -- (7.2,7.2);
+
+
+\end{tikzpicture}
+
+\end{document}
